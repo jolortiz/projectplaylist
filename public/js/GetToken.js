@@ -20,7 +20,8 @@ var global_token;
           }
           return hashParams;
         }
-
+        
+        
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
@@ -34,6 +35,8 @@ var global_token;
         var access_token = params.access_token,
             refresh_token = params.refresh_token,
             error = params.error;
+
+        
 
         if (error) {
           alert('There was an error during the authentication');

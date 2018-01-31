@@ -63,6 +63,23 @@ function formatTrackSelection(track) {
     if (track.id == "") {
         return "Click to search for a track.";
     } else {
+        //Call changetrack to 
+        changeTrack(track);
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
+
+    console.log(track.id);
+    //Set global track identifier to equal the last searched track
+    
+}
+
+function changeTrack(track) {
+
+    var spotifyWidgetSource = document.getElementById('spotifyWidget-template').innerHTML,
+            spotifyWidgetTemplate = Handlebars.compile(spotifyWidgetSource),
+            spotifyWidgetPlaceholder = document.getElementById('spotifyWidget');
+
+    spotifyWidgetPlaceholder.innerHTML = spotifyWidgetTemplate({
+        track_id: track.id
+      });
 }
