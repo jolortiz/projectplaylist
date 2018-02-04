@@ -72,11 +72,13 @@
         make playlist public
         <input type="checkbox" checked id="public" >
       </p>
-      <p><button onclick="makePlaylist({{ID}})">create playlist</button></p>
+      
+      <p><button onclick="makePlaylist({id})">create playlist</button></p>
+    </script>
       <br>
       <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
       <script>
-      function makePlaylist(usename) {
+      function makePlaylist(username) {
             var isPublic = document.getElementById("public").value;
             var playlistName = document.getElementById("nameField").value;          
             createPlaylist(username, playlistName, isPublic);
@@ -99,7 +101,6 @@
           </dl>
         </div>
       </div>-->
-    </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
       <!--<h2>oAuth info</h2>

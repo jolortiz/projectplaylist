@@ -1,4 +1,4 @@
-console.log(global_token);
+//console.log(global_token);
 
 function createPlaylist(username, playlistName, isPublic){
 	var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists';
