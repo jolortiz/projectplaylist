@@ -59,6 +59,18 @@ function formatTrack(track) {
     return html;
 }
 
+function formatTrackForList(track) {
+    if (track.loading) {
+        return "<div>Searching for tracks..</div>";
+    }
+    
+    var html = "<div class='select2-result-repository clearfix'>"+
+    "<img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' />" +
+    " " + track.name + " - "+ track.album.artists[0].name + "</div><br>"; 
+    
+    return html;
+}
+
 function formatTrackSelection(track) {
     if (track.id == "") {
         return "Click to search for a track.";
@@ -87,9 +99,9 @@ function changeTrack(track) {
     console.log("newElement");
       var li = document.createElement("li");
       //var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(track.id);
+      li.innerHTML = formatTrackForList(track);
       
-      li.appendChild(t);
+      //li.appendChild(t);
       //if (inputValue === '') {
       //  alert("You must write something!");
       //} else {
