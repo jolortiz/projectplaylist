@@ -59,6 +59,18 @@ function formatTrack(track) {
     return html;
 }
 
+function formatTrackForList(track) {
+    if (track.loading) {
+        return "<div>Searching for tracks..</div>";
+    }
+    
+    var html = "<div class='select2-result-repository clearfix'>"+
+    "<img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' />" +
+    " " + track.name + " - "+ track.album.artists[0].name + "</div><br>"; 
+    
+    return html;
+}
+
 function formatTrackSelection(track) {
     if (track.id == "") {
         return "Click to search for a track.";
@@ -83,7 +95,6 @@ function changeTrack(track) {
         track_id: track.id
       });
 
-
     //searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
         //adds track to playlist object
@@ -91,8 +102,7 @@ function changeTrack(track) {
         console.log(myplaylist);
         //adds track to playlist
         var li = document.createElement("li");
-        var t = document.createTextNode(track.id);
-        li.appendChild(t);
+        li.innerHTML = formatTrackForList(track);
         document.getElementById("scroll-container").appendChild(li);
         $( "li" ).addClass( "track" );
     }   
