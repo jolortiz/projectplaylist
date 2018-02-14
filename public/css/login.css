@@ -16,7 +16,8 @@ p {
 	border-radius: 20px;
 	padding: 10px 20px; /*topbottom, rightleft*/
 	margin: auto;
-	margin-top: 30px
+	margin-top: 30px;
+	list-style-type: none;
 }
 
 .track {
