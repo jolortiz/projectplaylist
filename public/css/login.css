@@ -6,6 +6,26 @@ p {
 	line-height: 1.2em;
 }
 
+#scroll-container {
+	height: 100px;
+	width: 80%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-weight: 400;
+	border: 1px solid #CD5C5C;
+	border-radius: 20px;
+	padding: 10px 20px; /*topbottom, rightleft*/
+	margin: auto;
+	margin-top: 30px;
+	list-style-type: none;
+}
+
+.track {
+	text-align: center;
+	font-family: "Source Sans Pro", sans-serif;
+	position: relative;
+}
+
 #login {
 	margin-top: 2%;
 	margin-bottom: 2%;
