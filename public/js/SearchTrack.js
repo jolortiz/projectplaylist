@@ -83,18 +83,17 @@ function changeTrack(track) {
         track_id: track.id
       });
 
-    //adds track to playlist
-    console.log("newElement");
-      var li = document.createElement("li");
-      //var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(track.id);
-      
-      li.appendChild(t);
-      //if (inputValue === '') {
-      //  alert("You must write something!");
-      //} else {
+
+    //searches playlist for track
+    if(myplaylist.indexOf(track.id) == -1){
+        //adds track to playlist object
+        myplaylist.push(track.id)
+        console.log(myplaylist);
+        //adds track to playlist
+        var li = document.createElement("li");
+        var t = document.createTextNode(track.id);
+        li.appendChild(t);
         document.getElementById("scroll-container").appendChild(li);
-      //}
-      //document.getElementById("myInput").value = "";
-  $( "li" ).addClass( "track" );
+        $( "li" ).addClass( "track" );
+    }   
 }
