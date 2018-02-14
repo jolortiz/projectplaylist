@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 
+    <script type="text/javascript" src="/js/Classes.js"></script>
+
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -46,13 +48,14 @@
         <div id="spotifyWidget">
         </div>
 
+        <div id="createplay">
+          <button type="button" onclick="alert('Hello world!')">
+            <span onclick="newElement()" class="addBtn">Add</span>
+          </button>
+        </div>
+
         <ul id="scroll-container">
-          <li class="track">Hit the gym</li>
-          <li class="track">Pay bills</li>
-          <li class="track">Meet George</li>
-          <li class="track">Buy eggs</li>
-          <li class="track">Read a book</li>
-          <li class="track">Organize office</li>
+          <!-- tracks -->
         </ul>
 
       </div>

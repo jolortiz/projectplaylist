@@ -82,4 +82,19 @@ function changeTrack(track) {
     spotifyWidgetPlaceholder.innerHTML = spotifyWidgetTemplate({
         track_id: track.id
       });
+
+    //adds track to playlist
+    console.log("newElement");
+      var li = document.createElement("li");
+      //var inputValue = document.getElementById("myInput").value;
+      var t = document.createTextNode(track.id);
+      
+      li.appendChild(t);
+      //if (inputValue === '') {
+      //  alert("You must write something!");
+      //} else {
+        document.getElementById("scroll-container").appendChild(li);
+      //}
+      //document.getElementById("myInput").value = "";
+  $( "li" ).addClass( "track" );
 }

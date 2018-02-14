@@ -6,6 +6,10 @@ p {
 	line-height: 1.2em;
 }
 
+#createplay {
+	text-align: center;
+}
+
 #scroll-container {
 	height: 100px;
 	width: 80%;
