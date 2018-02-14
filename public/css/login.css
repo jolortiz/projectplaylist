@@ -1,6 +1,6 @@
 p {
     padding-top: 0px;
-    margin:0
+    margin:0;
 	color: #7B7B7B;
 	font-size: 1.0em;
 	line-height: 1.2em;
@@ -8,9 +8,20 @@ p {
 
 #createplay {
 	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#playbutton {
+	border: 1px solid #CD5C5C;
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+	color: #7B7B7B;
 }
 
 #scroll-container {
+	display: none;
 	height: 100px;
 	width: 80%;
 	overflow-x: hidden;
@@ -25,7 +36,7 @@ p {
 }
 
 .track {
-	text-align: center;
+	/*text-align: center;*/
 	font-family: "Source Sans Pro", sans-serif;
 	position: relative;
 }
@@ -60,4 +71,13 @@ p {
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
     text-align: center;
+}
+
+#spotifyWidget {
+	margin-top: 30px;
+}
+
+#info {
+	text-align: center;
+	margin-top: 30px;
 }
