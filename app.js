@@ -11,6 +11,11 @@ var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
+var path= require('path');
+
+var index = require('./routes/index');
 
 var client_id = '3819f8f33b8e48e496a4babf32e60907'; // Your client id
 var client_secret = 'bc19c389323740738b64c637880e680e'; // Your secret
@@ -35,8 +40,20 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/public'))
-   .use(cookieParser());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+//app.use(express.static(__dirname + '/public'))
+  // .use(cookieParser());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressValidator());
+
+app.use('/', index);
+
 
 app.get('/login', function(req, res) {
 
@@ -139,6 +156,22 @@ app.get('/refresh_token', function(req, res) {
       });
     }
   });
+});
+module.exports = app;
+
+
+/*
+* MONGOOSE Code
+*
+*/
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/playlistDB')
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Connected to database");
 });
 
 console.log('Listening on 8888');
