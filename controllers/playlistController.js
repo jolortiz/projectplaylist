@@ -38,8 +38,10 @@ exports.playlist_detail = function (req, res, next) {
     async.parallel({
         playlist: function(callback) {
             Playlist.findById(req.params.id)
-            .populate('title')
-            .populate('numberOfTracks')
+            //.populate('title')
+            //.populate('numberOfTracks')
+            //.populate('tracks')
+            //.populate('_id')
             .exec(callback);
         }
     }, function(err, results){
@@ -51,6 +53,7 @@ exports.playlist_detail = function (req, res, next) {
             return next(err);
         }
         //Successful, so render
+        console.log(results.playlist);
         res.render('playlist_detail', {title: 'Title', playlist: results.playlist});
 
     });
