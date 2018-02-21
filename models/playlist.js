@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 //define playlist schema
 var PlaylistSchema = mongoose.Schema({
     title: {type: String, require: true},
-    connectCode: {type: String, require: true},
+    _id: {type: String, require: true},
     numberOfTracks: Number,
     tracks: [String]
   });
@@ -14,7 +14,7 @@ var PlaylistSchema = mongoose.Schema({
 PlaylistSchema
   .virtual('url')
   .get(function () {
-      return '/playlist/' + this.connectCode;
+      return '/playlist/' + this._id;
   });
 
 module.exports = mongoose.model('Playlist', PlaylistSchema);
