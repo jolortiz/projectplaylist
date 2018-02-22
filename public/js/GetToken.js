@@ -21,7 +21,7 @@ var global_token;
           return hashParams;
         }
         
-        
+        /*
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
@@ -29,7 +29,7 @@ var global_token;
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
-
+*/
         var params = getHashParams();
 
         var access_token = params.access_token,
@@ -43,11 +43,12 @@ var global_token;
         } else {
           if (access_token) {
             // render oauth info
+            /*
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
               refresh_token: refresh_token
             });
-
+*/
             global_token = access_token;
 
             $.ajax({
@@ -56,8 +57,9 @@ var global_token;
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                  /*
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
+*/
                   $('#login').hide();
                   $('#loggedin').show();
                 }
@@ -67,7 +69,7 @@ var global_token;
               $('#login').show();
               $('#loggedin').hide();
           }
-
+/* ~~~~~~ THIS CODE IS FOR OBTAINING A NEW TOKEN
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -83,5 +85,6 @@ var global_token;
               });
             });
           }, false);
+        */
         }
       })();

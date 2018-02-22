@@ -6,18 +6,6 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 
     <script type="text/javascript" src="/js/Classes.js"></script>
-
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
   </head>
 
   <body>
@@ -47,6 +35,7 @@
           </select>
         </div>
 
+        <!-- Playlist that creates button -->
         <div id="createplay">
           <button id="playbutton" type="button">
             <span onclick="newElement()" class="addBtn">Create</span>
@@ -69,47 +58,6 @@
         <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
         </iframe>
       </p>
-    </script>
-
-    <!-- USER PROFILE
-    <h6>
-          <p style="text-align: right;"><font size="-4">Logged in as {{id}}</font><p>
-          <image src="/assets/musaic_logo.png" width="84" height="84"/>
-          <p><br>
-      </h6>
-
-      <p><br>
-      <p>
-        <input type="text" id="nameField" placeholder="playlist name">
-      </p>
-      <p>
-        make playlist public
-        <input type="checkbox" checked id="public" >
-      </p>
-
-      <p><button onclick="makePlaylist({{id}})">create playlist</button></p>
-    </script>
-      <br>
-      <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
-      <script>
-      function makePlaylist(username) {
-            var isPublic = document.getElementById("public").value;
-            var playlistName = document.getElementById("nameField").value;
-            createPlaylist(username, playlistName, isPublic);
-      }
-  -->
-    <script id="user-profile-template" type="text/x-handlebars-template">
-      
-    </script>
-
-
-    <!-- ACCESS TOKEN -->
-    <script id="oauth-template" type="text/x-handlebars-template">
-      <!--<h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>-->
     </script>
 
     <!-- Gets Auth Token and populates user info -->

@@ -1,0 +1,51 @@
+doctype html
+html
+  head
+    title Musaic
+    link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/login.css")
+    script(type="text/javascript" src="/js/Classes.js")
+  body
+    .container
+      #login
+        // div that holds the logo
+        #img
+          image.logo(src="/assets/updated_logo.png")
+        #info
+          p
+            | Explore and collaborate on playlists with the world.
+            br
+        // div that holds the button
+        #login_butt
+          a.spottybutton(href="/login")
+            img(style="vertical-align:middle" src="/assets/spotty.png")
+            |   Log in with Spotify
+      #loggedin
+        // Spotify example return from login
+        #user-profile
+        #oauth
+        // Search Bar
+        .search_bar
+          select.js-data-example-ajax(style="width: 99%")
+        // Playlist that creates button
+        #createplay
+          button#playbutton(type="button")
+            span.addBtn(onclick="newElement()") Create
+        ul#scroll-container
+          // tracks
+        #spotifyWidget
+    // SPOTIFY WIDGET
+    script#spotifyWidget-template(type="text/x-handlebars-template").
+      <p style="text-align: center;">
+      <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
+      </iframe>
+      </p>
+    // Gets Auth Token and populates user info
+    script(src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js")
+    script(src="http://code.jquery.com/jquery-1.10.1.min.js")
+    script(type="text/javascript" src="/js/GetToken.js")
+    // CSS and JS for Select2
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js")
+    // Search Bar JS
+    script(type="text/javascript" src="/js/SearchTrack.js")
