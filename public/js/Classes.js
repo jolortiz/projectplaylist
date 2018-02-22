@@ -4,14 +4,13 @@
 
 */
 
+var myplaylist = [];
 
-class playlistobj{
-	constructor(){
-		this.tracklist = [];
-		this.hello = "hello";
-	}
+
+function newElement() {
+	//displays the playlist when button is clicked
+	var x = document.getElementById("scroll-container");
+    if (x.style.display === "") {
+        x.style.display = "block";
+    }
 }
-
-const playlist_obj = new playlistobj();
-
-console.log(playlist_obj.hello);

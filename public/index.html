@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 
+    <script type="text/javascript" src="/js/Classes.js"></script>
+
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -19,12 +21,13 @@
   </head>
 
   <body>
-    <script type="text/javascript" src="/js/PlaylistDB.js"></script>
     <div class="container">
       <div id="login">
         <!-- div that holds the logo -->
         <div id="img">
-          <image class="logo" src="/assets/musaic_logo.png"/>
+          <image class="logo" src="/assets/updated_logo.png"/>
+        </div>
+        <div id="info">
           <p>Explore and collaborate on playlists with the world.<br>
         </div>
         <!-- div that holds the button -->
@@ -43,22 +46,24 @@
           <select class="js-data-example-ajax" style="width: 99%">
           </select>
         </div>
-        
-        <div id="spotifyWidget">
+
+        <div id="createplay">
+          <button id="playbutton" type="button">
+            <span onclick="newElement()" class="addBtn">Create</span>
+          </button>
         </div>
 
         <ul id="scroll-container">
-          <li class="track">Hit the gym</li>
-          <li class="track">Pay bills</li>
-          <li class="track">Meet George</li>
-          <li class="track">Buy eggs</li>
-          <li class="track">Read a book</li>
-          <li class="track">Organize office</li>
+          <!-- tracks -->
         </ul>
+
+        <div id="spotifyWidget">
+        </div>
 
       </div>
     </div>
 
+    <!-- SPOTIFY WIDGET -->
     <script id="spotifyWidget-template" type="text/x-handlebars-template">
       <p style="text-align: center;">
         <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
@@ -66,9 +71,8 @@
       </p>
     </script>
 
-    <!--TODO. Removing the following scripts all together breaks page, figure out why and get rid of them-->
-    <script id="user-profile-template" type="text/x-handlebars-template">
-      <h6>
+    <!-- USER PROFILE
+    <h6>
           <p style="text-align: right;"><font size="-4">Logged in as {{id}}</font><p>
           <image src="/assets/musaic_logo.png" width="84" height="84"/>
           <p><br>
@@ -84,7 +88,6 @@
       </p>
 
       <p><button onclick="makePlaylist({{id}})">create playlist</button></p>
-      <p><button onclick="createPlaylistDB()">create DB playlist</button></p>
     </script>
       <br>
       <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
@@ -94,27 +97,13 @@
             var playlistName = document.getElementById("nameField").value;
             createPlaylist(username, playlistName, isPublic);
       }
-      </script>
-
-      <!--<div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
-        </div>
-      </div>-->
+  -->
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      
+    </script>
 
 
-
+    <!-- ACCESS TOKEN -->
     <script id="oauth-template" type="text/x-handlebars-template">
       <!--<h2>oAuth info</h2>
       <dl class="dl-horizontal">
