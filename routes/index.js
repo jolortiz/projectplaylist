@@ -12,6 +12,15 @@ var playlist_controller = require('../controllers/playlistController');
 router.get('/', playlist_controller.index);
 router.get('/index', playlist_controller.index);
 
+// GET login page
+router.get('/login', playlist_controller.login);
+
+// GET callback
+router.get('/callback', playlist_controller.callback);
+
+// GET refresh token
+router.get('/refresh_token', playlist_controller.refresh_token);
+
 // GET request for creating Playlist. NOTE This must come before route for id (i.e. display playlist).
 router.get('/playlist/create', playlist_controller.playlist_create_get);
 

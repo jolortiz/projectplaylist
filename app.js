@@ -15,18 +15,9 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var path= require('path');
 
-var index = require('./routes/index');
+//var stateKey = 'spotify_auth_state';
 
-var client_id = '3819f8f33b8e48e496a4babf32e60907'; // Your client id
-var client_secret = 'bc19c389323740738b64c637880e680e'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
-var generateRandomString = function(length) {
+/*var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -34,9 +25,22 @@ var generateRandomString = function(length) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
-};
+};*/
 
-var stateKey = 'spotify_auth_state';
+var index = require('./routes/index');
+
+//var client_id = '3819f8f33b8e48e496a4babf32e60907'; // Your client id
+//var client_secret = 'bc19c389323740738b64c637880e680e'; // Your secret
+///var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+
+/**
+ * Generates a random string containing numbers and letters
+ * @param  {number} length The length of the string
+ * @return {string} The generated string
+ */
+
+
+//var stateKey = 'spotify_auth_state';
 
 var app = express();
 
@@ -55,11 +59,11 @@ app.use(expressValidator());
 app.use('/', index);
 
 
-app.get('/login', function(req, res) {
+/*app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
-
+  console.log("Herio");
   // your application requests authorization
   var scope = 'user-read-private user-read-email playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -132,9 +136,9 @@ app.get('/callback', function(req, res) {
       }
     });
   }
-});
+});*/
 
-app.get('/refresh_token', function(req, res) {
+/*app.get('/refresh_token', function(req, res) {
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -156,7 +160,7 @@ app.get('/refresh_token', function(req, res) {
       });
     }
   });
-});
+});*/
 module.exports = app;
 
 
