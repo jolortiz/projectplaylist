@@ -1,0 +1,94 @@
+#login, #loggedin {
+        display: none;
+}
+
+.text-overflow {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: 500px;
+}
+
+p {
+    padding-top: 0px;
+    margin:0;
+	color: #7B7B7B;
+	font-size: 1.0em;
+	line-height: 1.2em;
+}
+
+#createplay {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#playbutton {
+	border: 1px solid #CD5C5C;
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+	color: #7B7B7B;
+}
+
+#scroll-container {
+	display: none;
+	height: 100px;
+	width: 80%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-weight: 400;
+	border: 1px solid #CD5C5C;
+	border-radius: 20px;
+	padding: 10px 20px; /*topbottom, rightleft*/
+	margin: auto;
+	margin-top: 30px;
+	list-style-type: none;
+}
+
+.track {
+	/*text-align: center;*/
+	font-family: "Source Sans Pro", sans-serif;
+	position: relative;
+}
+
+#login {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.logo {
+    width: 40%;
+}
+
+#img {
+	text-align: center;
+}
+
+#login_butt {
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#login_butt a { 
+	margin-top: 30px;
+    color: #fff;
+    background-color: #CD5C5C;
+    padding: 20px 70px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+#spotifyWidget {
+	margin-top: 30px;
+}
+
+#info {
+	text-align: center;
+	margin-top: 30px;
+}

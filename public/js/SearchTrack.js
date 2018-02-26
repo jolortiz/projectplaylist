@@ -8,7 +8,7 @@
 console.log(global_token);
 
 
-$(".js-data-example-ajax").select2({
+$(".search_bar_select").select2({
     placeholder: "Please click to search for a track.", 
     ajax: {
         url: "https://api.spotify.com/v1/search",

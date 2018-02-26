@@ -19,6 +19,8 @@ var client_id = '3819f8f33b8e48e496a4babf32e60907'; // Your client id
 var client_secret = 'bc19c389323740738b64c637880e680e'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
+var creating = false;
+
 exports.index = function (req, res) {
     async.parallel({
         playlist_count: function (callback) {
@@ -39,13 +41,14 @@ var generateRandomString = function(length) {
   return text;
 };
 
-exports.login = function (req, res) {
+exports.login_create = function (req, res) {
 
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
     // your application requests authorization
     var scope = 'user-read-private user-read-email playlist-modify-private';
+    creating = true;
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -54,6 +57,26 @@ exports.login = function (req, res) {
             redirect_uri: redirect_uri,
             state: state
         }));
+
+};
+
+exports.login_join = function (req, res) {
+
+    var state = generateRandomString(16);
+    res.cookie(stateKey, state);
+
+    // your application requests authorization
+    var scope = 'user-read-private user-read-email playlist-modify-private';
+    creating = false;
+    res.redirect('https://accounts.spotify.com/authorize?' +
+        querystring.stringify({
+            response_type: 'code',
+            client_id: client_id,
+            scope: scope,
+            redirect_uri: redirect_uri,
+            state: state
+        }));
+
 };
 
 exports.callback = function (req, res) {
@@ -103,11 +126,19 @@ exports.callback = function (req, res) {
                 });
 
                 // we can also pass the token to the browser to make requests from there
-                res.redirect('/#' +
+                if(creating){
+                    res.redirect('/playlist/create#' +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token
                     }));
+                } else {
+                    res.redirect('/playlist/join#' +
+                    querystring.stringify({
+                        access_token: access_token,
+                        refresh_token: refresh_token
+                    }));
+                }
             } else {
                 res.redirect('/#' +
                     querystring.stringify({
@@ -185,10 +216,54 @@ exports.playlist_detail = function (req, res, next) {
 
 };
 
+//Display playlist join form on GET.
+exports.playlist_join_get = function (req, res, next) {
+    res.render('join', { title: 'Join Playlist' });
+};
+
 // Display playlist create form on GET.
 exports.playlist_create_get = function (req, res, next) {
     res.render('playlist_form', { title: 'Create Playlist' });
 };
+
+//Handle playlist join on POST
+exports.playlist_join_post = [
+    //Validate that it is a five digit code
+    body('_id', '_id required').isLength({min: 5, max: 5}).withMessage('Must be of length 5').trim(),
+
+    //Sanitize the code
+    sanitizeBody('_id').trim().escape(),
+
+    (req, res, next) => {
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            //There are errors
+            res.render('join', { title: 'Join Playlist', errors: errors.array() });
+            return;
+        } else {
+            // Data from form is valid.
+            // Check if Playlist with same name already exists.
+            Playlist.findOne({ '_id': req.body._id })
+                .exec(function (err, found_playlist) {
+                    if (err) { return next(err); }
+
+                    if (found_playlist) {
+                        // Playlist exists, redirect to its detail page.
+                        res.redirect(found_playlist.url);
+                    }
+                    else {
+                        //Playlist does not exist
+                        var not_found = {param: "_id", msg: "Playlist not found", value: req.body._id};
+                        errors.array().push(not_found);
+                        res.render('join', { title: 'Join Playlist', errors: errors.array() });
+                    }
+
+                });
+        }
+    }
+];
 
 // Handle playlist create on POST.
 exports.playlist_create_post = [
@@ -204,62 +279,6 @@ exports.playlist_create_post = [
 
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-
-        exports.playlist_create_post = [
-
-            // Validate that the name field is not empty.
-            body('title', 'Playlist title required').isLength({ min: 1 }).trim(),
-
-            // Sanitize (trim and escape) the name field.
-            sanitizeBody('title').trim().escape(),
-
-            // Process request after validation and sanitization.
-            (req, res, next) => {
-
-                // Extract the validation errors from a request.
-                const errors = validationResult(req);
-
-                // Create a playlist object with escaped and trimmed data.
-                var playlist = new Playlist(
-                    {
-                        title: req.body.title,
-                        _id: createConnectCode(),
-                        numberOfTracks: 0,
-                        tracks: []
-                    }
-                );
-
-
-                if (!errors.isEmpty()) {
-                    // There are errors. Render the form again with sanitized values/error messages.
-                    res.render('playlist_form', { title: 'Create Playlist', title: title, errors: errors.array() });
-                    return;
-                }
-                else {
-                    // Data from form is valid.
-                    // Check if Playlist with same name already exists.
-                    Playlist.findOne({ 'title': req.body.title })
-                        .exec(function (err, found_playlist) {
-                            if (err) { return next(err); }
-
-                            if (found_playlist) {
-                                // Playlist exists, redirect to its detail page.
-                                res.redirect(found_playlist.url);
-                            }
-                            else {
-
-                                playlist.save(function (err) {
-                                    if (err) { return next(err); }
-                                    // Playlist saved. Redirect to playlist detail page.
-                                    res.redirect(playlist.url);
-                                });
-
-                            }
-
-                        });
-                }
-            }
-        ];
 
         // Create a playlist object with escaped and trimmed data.
         var playlist = new Playlist(
@@ -280,7 +299,7 @@ exports.playlist_create_post = [
         else {
             // Data from form is valid.
             // Check if Playlist with same name already exists.
-            Playlist.findOne({ 'name': req.body.title })
+            Playlist.findOne({ 'title': req.body.title })
                 .exec(function (err, found_playlist) {
                     if (err) { return next(err); }
 
