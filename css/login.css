@@ -32,7 +32,6 @@ p {
 }
 
 #scroll-container {
-	display: none;
 	height: 100px;
 	width: 80%;
 	overflow-x: hidden;

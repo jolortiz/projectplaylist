@@ -18,6 +18,12 @@ block content
   script(type="text/javascript").
     var id = "#{_id}";
   script(type="text/javascript" src="/js/SearchTrack.js")
+
+  ul(id="scroll-container")
+    each track in playlist.tracks
+      li
+        = JSON.parse(track).name
+
     
 
     

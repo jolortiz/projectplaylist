@@ -41,6 +41,10 @@ var generateRandomString = function (length) {
     return text;
 };
 
+function getTrack(track_id){
+
+}
+
 exports.login_create = function (req, res) {
 
     var state = generateRandomString(16);
@@ -208,6 +212,7 @@ exports.playlist_detail_get = function (req, res, next) {
         }
         //Successful, so render
         res.render('playlist_detail', { title: 'Title', playlist: results.playlist, _id: req.params.id });
+        //res.render('playlist_scroll', {title: 'Title', playlist: results.playlist, _id: req.params.id, tracks: req.params.tracks});
 
     });
 
@@ -221,15 +226,16 @@ exports.playlist_detail_post = [
         Playlist.findOne({ '_id': req.body._id })
             .exec(function (err, found_playlist) {
                 if (err) { return next(err); }
-                var found = (found_playlist.tracks.indexOf(req.body.track_id) > -1);
+                var found = (found_playlist.tracks.indexOf(req.body.track) > -1);
                 if (found_playlist) {
                     //Add track to array
                     if (!found) {
-                        found_playlist.tracks.push(req.body.track_id);
+                        found_playlist.tracks.push(req.body.track);
                         found_playlist.numberOfTracks++;
                         found_playlist.save();
-                    }
+                        res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
 
+                    }
                 }
                 else {
                     //Playlist does not exist, something is seriously wrong

@@ -48,7 +48,6 @@ $(".search_bar_select").select2({
 
 function formatTrack(track) {
     if (track.loading) {
-        console.log("testing");
         return "<div>Searching for tracks..</div>";
     }
     
@@ -84,9 +83,9 @@ function formatTrackSelection(track) {
         $.ajax({
             type: "POST",
             url: "/playlist/" + id,
-            data: { track_id: track.id, _id: id },
+            data: { track_id: track.id, _id: id, track: JSON.stringify(track)},
             success: function () {
-                alert('success');
+                //alert('success');
             }
         });
         
