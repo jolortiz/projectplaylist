@@ -4,9 +4,8 @@
     ~ uses Select2 to search the spotify library and return results
 
 */
-
+var _id = id;
 console.log(global_token);
-
 
 $(".search_bar_select").select2({
     placeholder: "Please click to search for a track.", 
@@ -44,10 +43,12 @@ $(".search_bar_select").select2({
     minimumInputLength: 1,
     templateResult: formatTrack,
     templateSelection: formatTrackSelection
+    
 });
 
 function formatTrack(track) {
     if (track.loading) {
+        console.log("testing");
         return "<div>Searching for tracks..</div>";
     }
     
@@ -77,25 +78,29 @@ function formatTrackSelection(track) {
     } else {
         //Call changetrack to 
         changeTrack(track);
+
+        var track_id = track.id;
+
+        $.ajax({
+            type: "POST",
+            url: "/playlist/" + id,
+            data: { track_id: track.id, _id: id },
+            success: function () {
+                alert('success');
+            }
+        });
+        
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
 
-    console.log(track.id);
     //Set global track identifier to equal the last searched track
     
 }
 
 function changeTrack(track) {
+    
 
-    var spotifyWidgetSource = document.getElementById('spotifyWidget-template').innerHTML,
-            spotifyWidgetTemplate = Handlebars.compile(spotifyWidgetSource),
-            spotifyWidgetPlaceholder = document.getElementById('spotifyWidget');
-
-    spotifyWidgetPlaceholder.innerHTML = spotifyWidgetTemplate({
-        track_id: track.id
-      });
-
-    //searches playlist for track
+    /*searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
         //adds track to playlist object
         myplaylist.push(track.id)
@@ -105,5 +110,5 @@ function changeTrack(track) {
         li.innerHTML = formatTrackForList(track);
         document.getElementById("scroll-container").appendChild(li);
         $( "li" ).addClass( "track" );
-    }   
+    }   */
 }

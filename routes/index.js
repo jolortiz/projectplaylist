@@ -47,7 +47,10 @@ router.get('/playlist/:id/update', playlist_controller.playlist_update_get);
 router.post('/playlist/:id/update', playlist_controller.playlist_update_post);
 
 // GET request for one Playlist.
-router.get('/playlist/:id', playlist_controller.playlist_detail);
+router.get('/playlist/:id', playlist_controller.playlist_detail_get);
+
+// POST request for updating playlist
+router.post('/playlist/:id', playlist_controller.playlist_detail_post);
 
 // GET request for list of all Authors.
 router.get('/playlists', playlist_controller.playlist_list);
