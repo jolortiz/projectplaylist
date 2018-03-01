@@ -88,7 +88,9 @@ function formatTrackSelection(track) {
                 //alert('success');
             }
         });
-        
+
+        location.reload()
+
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
 
