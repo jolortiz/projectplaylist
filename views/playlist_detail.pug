@@ -24,6 +24,12 @@ block content
       li
         = JSON.parse(track).name
 
-    
+  #spotifyWidget
 
-    
+  script#spotifyWidget-template(type='text/x-handlebars-template').
+  <p style="text-align: center;">
+  <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
+  </iframe>
+  </p>
+
+  script(src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js')
