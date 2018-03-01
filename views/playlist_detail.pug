@@ -20,7 +20,6 @@ block content
   script(type="text/javascript" src="/js/SearchTrack.js")
 
   ul(id="scroll-container")
-    script(type="text/javascript") var i = true
     each track, index in playlist.tracks
       if index % 2 == 0
         li(style="background-color:lightgrey; margin-bottom:4px; margin-top:4px;")
@@ -33,4 +32,10 @@ block content
           text 
             = JSON.parse(track).name + " - " + JSON.parse(track).album.artists[0].name
 
-    
+  script#spotifyWidget-template(type='text/x-handlebars-template').
+  <p style="text-align: center;">
+  <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
+  </iframe>
+  </p>
+
+  script(src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js')

@@ -1,12 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to Musaic, a bunch of garbage that doesn't work.
+  #img
+    image.logo(src='/assets/updated_logo.png')
 
-  a(class="spottybutton" href="/login_create") Create a playlist
+  #info
+    p
+      | Explore and collaborate on playlists with the world.
+      br
+      |  Sign in with Spotify to start now!
 
-  a(class="spottybutton" href="/login_join") Join a playlist
+  #login_butt
+    a(href='/login_create')
+      img(style='vertical-align:middle', src='/assets/spotty.png')
+      |   Create a Playlist
+  #login_butt
+    a(href='/login_join')
+      img(style='vertical-align:middle', src='/assets/spotty.png')
+      |   Join a PLaylist
 
   h1 Dynamic content
 
