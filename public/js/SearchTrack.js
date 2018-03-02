@@ -8,23 +8,23 @@ var _id = id;
 console.log(global_token);
 
 $(".search_bar_select").select2({
-    placeholder: "Please click to search for a track.", 
+    placeholder: "Please click to search for a track.",
     ajax: {
         url: "https://api.spotify.com/v1/search",
         dataType: 'json',
         delay: 250,
         headers: {
-            "Authorization": "Bearer " + global_token, 
+            "Authorization": "Bearer " + global_token,
             "Content-Type": "application/json",
-        }, 
+        },
         data: function (params) {
             return {
-                query: params.term, 
-                type: "track", 
-                market: "US", 
+                query: params.term,
+                type: "track",
+                market: "US",
                 limit: 10
             };
-        }, 
+        },
         processResults: function (data) {
             var items = [];
             data.tracks.items.forEach(function(d) {
@@ -32,30 +32,30 @@ $(".search_bar_select").select2({
                     items.push(d);
                 //}
             });
-            
+
             return {
                 results: items
             };
-        }, 
+        },
         cache: true
     },
     escapeMarkup: function (markup) { return markup; },
     minimumInputLength: 1,
     templateResult: formatTrack,
     templateSelection: formatTrackSelection
-    
+
 });
 
 function formatTrack(track) {
     if (track.loading) {
         return "<div>Searching for tracks..</div>";
     }
-    
+
     var html = "<div class='select2-result-repository clearfix'>" +
     "<div class='select2-result-repository__avatar'><img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' /></div>" +
     "<div class='select2-result-repository__meta'>" +
       "<div class='select2-result-repository__title'>" + track.name + " -<br/>" + track.album.artists[0].name + "</div></div></div>";
-    
+
     return html;
 }
 
@@ -63,11 +63,11 @@ function formatTrackForList(track) {
     if (track.loading) {
         return "<div>Searching for tracks..</div>";
     }
-    
+
     var html = "<div class='select2-result-repository clearfix'>"+
     "<img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' />" +
-    " " + track.name + " - "+ track.album.artists[0].name + "</div><br>"; 
-    
+    " " + track.name + " - "+ track.album.artists[0].name + "</div><br>";
+
     return html;
 }
 
@@ -75,8 +75,8 @@ function formatTrackSelection(track) {
     if (track.id == "") {
         return "Click to search for a track.";
     } else {
-        //Call changetrack to 
-        changeTrack(track);
+        //Call changetrack to
+				changeTrack(track);
 
         var track_id = track.id;
 
@@ -89,17 +89,17 @@ function formatTrackSelection(track) {
             }
         });
 
-        location.reload()
-
+        location.reload();
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
 
     //Set global track identifier to equal the last searched track
-    
+
 }
 
 function changeTrack(track) {
-    
+		var base = "https://open.spotify.com/embed/track/"
+	    document.getElementById("widget").src=base + track.id;
 
     /*searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
