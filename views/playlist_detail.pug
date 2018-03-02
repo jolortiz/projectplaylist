@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  link(rel='stylesheet', type='text/css', href='/css/login.css')
+
   h1 #{title}: #{playlist.title}
   h3 Join Code: #{_id}
 
@@ -33,4 +35,4 @@ block content
             = JSON.parse(track).name + " - " + JSON.parse(track).album.artists[0].name
 
   p(style='text-align: center;')
-  iframe#widget(frameborder='0' allowtransparency='true')
+    iframe#widget(width='300', height='380', frameborder='0', allowtransparency='true')

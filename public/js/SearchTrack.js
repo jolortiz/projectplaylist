@@ -75,8 +75,6 @@ function formatTrackSelection(track) {
     if (track.id == "") {
         return "Click to search for a track.";
     } else {
-        //Call changetrack to
-				changeTrack(track);
 
         var track_id = track.id;
 
@@ -98,8 +96,10 @@ function formatTrackSelection(track) {
 }
 
 function changeTrack(track) {
-		var base = "https://open.spotify.com/embed/track/"
-	    document.getElementById("widget").src=base + track.id;
+        
+		var base = "https://open.spotify.com/embed/track/" + track.id;
+        console.log(base);
+	    document.getElementById("widget").src=base;
 
     /*searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){

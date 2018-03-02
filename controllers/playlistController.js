@@ -235,6 +235,13 @@ exports.playlist_detail_post = [
                         found_playlist.save();
                         res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
 
+                    } else {
+                        /* this for deleting a track?
+                        found_playlist.tracks.pop(req.body.track);
+                        found_playlist.numberOfTracks--;
+                        found_playlist.save();
+                        res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+                        */
                     }
                 }
                 else {
