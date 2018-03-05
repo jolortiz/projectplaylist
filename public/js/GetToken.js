@@ -4,6 +4,7 @@
 */
 
 var global_token;
+var gloabl_username;
 
 (function() {
 
@@ -21,15 +22,14 @@ var global_token;
           return hashParams;
         }
         
-        
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+        /*var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
-
+            userProfilePlaceholder = document.getElementById('user-profile');*/
+/*
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
-
+*/
         var params = getHashParams();
 
         var access_token = params.access_token,
@@ -43,10 +43,12 @@ var global_token;
         } else {
           if (access_token) {
             // render oauth info
+            /*
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
               refresh_token: refresh_token
             });
+*/
 
             global_token = access_token;
 
@@ -56,8 +58,7 @@ var global_token;
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
+                  //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                   $('#login').hide();
                   $('#loggedin').show();
                 }
@@ -67,7 +68,7 @@ var global_token;
               $('#login').show();
               $('#loggedin').hide();
           }
-
+/*
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -83,5 +84,6 @@ var global_token;
               });
             });
           }, false);
+          */
         }
       })();

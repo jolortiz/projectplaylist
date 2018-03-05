@@ -58,21 +58,28 @@
         </ul>
 
         <div id="spotifyWidget">
+          <iframe id="spottyplay" frameborder="0" allow="encrypted-media" allowtransparency="true">
+          </iframe>
         </div>
 
       </div>
     </div>
 
-    <!-- SPOTIFY WIDGET -->
+    <!-- SPOTIFY WIDGET
     <script id="spotifyWidget-template" type="text/x-handlebars-template">
       <p style="text-align: center;">
         <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
         </iframe>
       </p>
     </script>
+  -->
+
+    <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
 
     <!-- USER PROFILE
-    <h6>
+    <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h6>
           <p style="text-align: right;"><font size="-4">Logged in as {{id}}</font><p>
           <image src="/assets/musaic_logo.png" width="84" height="84"/>
           <p><br>
@@ -88,29 +95,29 @@
       </p>
 
       <p><button onclick="makePlaylist({{id}})">create playlist</button></p>
-    </script>
       <br>
-      <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
-      <script>
+    </script>
+    <script>
       function makePlaylist(username) {
             var isPublic = document.getElementById("public").value;
             var playlistName = document.getElementById("nameField").value;
             createPlaylist(username, playlistName, isPublic);
       }
+    </script>
   -->
+
+<!--
     <script id="user-profile-template" type="text/x-handlebars-template">
       
     </script>
-
-
-    <!-- ACCESS TOKEN -->
     <script id="oauth-template" type="text/x-handlebars-template">
-      <!--<h2>oAuth info</h2>
+      <h2>oAuth info</h2>
       <dl class="dl-horizontal">
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>-->
+      </dl>
     </script>
+-->
 
     <!-- Gets Auth Token and populates user info -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>

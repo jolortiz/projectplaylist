@@ -86,7 +86,7 @@ function formatTrackSelection(track) {
 }
 
 function changeTrack(track) {
-
+/*
     var spotifyWidgetSource = document.getElementById('spotifyWidget-template').innerHTML,
             spotifyWidgetTemplate = Handlebars.compile(spotifyWidgetSource),
             spotifyWidgetPlaceholder = document.getElementById('spotifyWidget');
@@ -94,16 +94,49 @@ function changeTrack(track) {
     spotifyWidgetPlaceholder.innerHTML = spotifyWidgetTemplate({
         track_id: track.id
       });
+*/
 
     //searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
+        //adds track to spotify database
+        addTrack("jonathanlortiz", global_playlistid, track.id);
         //adds track to playlist object
-        myplaylist.push(track.id)
+        myplaylist.push(track.id);
         console.log(myplaylist);
-        //adds track to playlist
+        //adds track to playlist html element
         var li = document.createElement("li");
         li.innerHTML = formatTrackForList(track);
         document.getElementById("scroll-container").appendChild(li);
         $( "li" ).addClass( "track" );
-    }   
+    }
+
+    //updates widget with info
+    var y = document.getElementById("spottyplay");
+    y.src = "https://open.spotify.com/embed?uri=spotify:user:jonathanlortiz:playlist:" + global_playlistid + "&theme=white&view=coverart";
+
+}
+
+function addTrack(username, playlistid, trackid){
+    //console.log(playlistid);
+    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists/' + playlistid + '/tracks';
+    var temp = "spotify:track:" + trackid;
+
+    $.ajax({
+        type: 'POST',
+        url: urlString,
+        data: JSON.stringify({
+            'uris': [temp]
+        }),
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + global_token
+        },
+        contentType: 'application/json',
+        success: function(result) {
+            console.log('Success');
+        },
+        error: function() {
+            console.log('Error');
+        }
+    })
 }
