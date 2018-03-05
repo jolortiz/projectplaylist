@@ -97,7 +97,7 @@ function formatTrackSelection(track) {
 
 function changeTrack(track) {
         
-		var base = "https://open.spotify.com/embed/track/" + track.id;
+		var base = "https://open.spotify.com/embed?uri=spotify:track:" + track.id + "&theme=white&view=coverart";
         console.log(base);
 	    document.getElementById("widget").src=base;
 

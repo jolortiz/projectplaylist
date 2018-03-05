@@ -3,10 +3,10 @@ extends layout
 block content
   link(rel='stylesheet', type='text/css', href='/css/login.css')
 
-  h1.color #{title}: #{playlist.title}
-  h3.color Join Code: #{_id}
+  h1.color #{title} · #{playlist.title}
+  h3.color Join Code · #{_id}
 
-  p.color #[strong Number of Tracks:] #{playlist.numberOfTracks}
+  p.color #[strong Number of Tracks ·] #{playlist.numberOfTracks}
 
   div(class="search_bar")
     select(class="search_bar_select" style="width: 99%")
@@ -27,12 +27,13 @@ block content
         li(style="background-color:lightgrey; margin-bottom:4px; margin-top:4px;" onclick="changeTrack(" + track + ")")
           img(src = JSON.parse(track).album.images[2].url)
           text 
-            = JSON.parse(track).name + " - " + JSON.parse(track).album.artists[0].name
+            = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
       else
         li(style="background-color:#FFD6D1" onclick="changeTrack(" + track + ")")
           img(src = JSON.parse(track).album.images[2].url)
           text 
-            = JSON.parse(track).name + " - " + JSON.parse(track).album.artists[0].name
+            = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
 
 
   iframe#widget(width='300', height='380', frameborder='0', allowtransparency='true')
+
