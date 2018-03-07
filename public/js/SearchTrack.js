@@ -5,9 +5,6 @@
 
 */
 
-console.log(global_token);
-
-
 $(".js-data-example-ajax").select2({
     placeholder: "Please click to search for a track.", 
     ajax: {
@@ -99,7 +96,7 @@ function changeTrack(track) {
     //searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
         //adds track to spotify database
-        addTrack("jonathanlortiz", global_playlistid, track.id);
+        addTrack(global_username, global_playlistid, track.id);
         //adds track to playlist object
         myplaylist.push(track.id);
         console.log(myplaylist);
@@ -112,7 +109,7 @@ function changeTrack(track) {
 
     //updates widget with info
     var y = document.getElementById("spottyplay");
-    y.src = "https://open.spotify.com/embed?uri=spotify:user:jonathanlortiz:playlist:" + global_playlistid + "&theme=white&view=coverart";
+    y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + global_playlistid + "&theme=white&view=coverart";
 
 }
 

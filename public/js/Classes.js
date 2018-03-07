@@ -14,8 +14,8 @@ function newElement() {
         x.style.display = "block";
     }
     //creates a playlist on spotty account
-    var username = "jonathanlortiz";
-    var playlistname = "boof3";
+    var username = global_username;
+    var playlistname = "boof4";
     createPlaylist(username,playlistname,true);
-    
+
 }

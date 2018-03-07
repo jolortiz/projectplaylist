@@ -59,6 +59,8 @@ var gloabl_username;
                 },
                 success: function(response) {
                   //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  console.log(response.id);
+                  global_username = response.id;
                   $('#login').hide();
                   $('#loggedin').show();
                 }

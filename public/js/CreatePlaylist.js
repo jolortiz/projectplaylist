@@ -11,12 +11,6 @@ function createPlaylist(username, playlistName, isPublic){
 	console.log(playlistName);
 	var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists';
 
-	var jsonData = {
-	"description": "New playlist description",
-	"public": false,
-	"name": "lol"
-	};
-
 	$.ajax({
 		type: 'POST',
 		url: urlString,
@@ -40,10 +34,3 @@ function createPlaylist(username, playlistName, isPublic){
 		}
 	})
 }
-
-/*
-JSON.stringify({
-				'name': playlistName,
-				'public': true
-		})
-*/
