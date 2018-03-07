@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Musaic</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+
+    <script type="text/javascript" src="/js/Classes.js"></script>
+
+    <style type="text/css">
+      #login, #loggedin {
+        display: none;
+      }
+      .text-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="login">
+        <!-- div that holds the logo -->
+        <div id="img">
+          <image class="logo" src="/assets/updated_logo.png"/>
+        </div>
+        <div id="info">
+          <p>Explore and collaborate on playlists with the world.<br>
+        </div>
+        <!-- div that holds the button -->
+        <div id="login_butt">
+          <a class="spottybutton" href="/login"><img style="vertical-align:middle"  src="/assets/spotty.png"/>  Log in with Spotify</a>
+        </div>
+      </div>
+      <div id="loggedin">
+        <!--Spotify example return from login-->
+        <div id="user-profile">
+        </div>
+        <div id="oauth">
+        </div>
+        <!-- Search Bar -->
+        <div class="search_bar">
+          <select class="js-data-example-ajax" style="width: 99%">
+          </select>
+        </div>
+
+        <div id="createplay">
+          <button id="playbutton" type="button">
+            <span onclick="newElement()" class="addBtn">Create</span>
+          </button>
+        </div>
+
+        <ul id="scroll-container">
+          <!-- tracks -->
+        </ul>
+
+        <div id="spotifyWidget">
+          <iframe id="spottyplay" frameborder="0" allow="encrypted-media" allowtransparency="true">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SPOTIFY WIDGET
+    <script id="spotifyWidget-template" type="text/x-handlebars-template">
+      <p style="text-align: center;">
+        <iframe src="https://open.spotify.com/embed?uri=spotify:track:{{track_id}}&theme=white&view=coverart" frameborder="0" allowtransparency="true">
+        </iframe>
+      </p>
+    </script>
+  -->
+
+    <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
+
+    <!-- USER PROFILE
+    <script type="text/javascript" src="/js/CreatePlaylist.js"></script>
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h6>
+          <p style="text-align: right;"><font size="-4">Logged in as {{id}}</font><p>
+          <image src="/assets/musaic_logo.png" width="84" height="84"/>
+          <p><br>
+      </h6>
+
+      <p><br>
+      <p>
+        <input type="text" id="nameField" placeholder="playlist name">
+      </p>
+      <p>
+        make playlist public
+        <input type="checkbox" checked id="public" >
+      </p>
+
+      <p><button onclick="makePlaylist({{id}})">create playlist</button></p>
+      <br>
+    </script>
+    <script>
+      function makePlaylist(username) {
+            var isPublic = document.getElementById("public").value;
+            var playlistName = document.getElementById("nameField").value;
+            createPlaylist(username, playlistName, isPublic);
+      }
+    </script>
+  -->
+
+<!--
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      
+    </script>
+    <script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
+      </dl>
+    </script>
+-->
+
+    <!-- Gets Auth Token and populates user info -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="/js/GetToken.js"></script>
+
+    <!-- CSS and JS for Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!-- Search Bar JS -->
+    <script type="text/javascript" src="/js/SearchTrack.js"></script>
+
+  </body>
+</html>

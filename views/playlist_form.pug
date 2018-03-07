@@ -3,11 +3,13 @@ extends layout
 block content
   h1=title
 
+  script(type="text/javascript" src="/js/CreatePlaylist.js")
+
   form(method='POST' action='')
     div.form-group
       label(for='title') Playlist Title:
       input#title.form-control(type='text', placeholder='Playlist Title' name='title' required='true' value=(undefined===playlist ? '' : playlist.title) )
-    button.btn.btn-primary(type='submit') Submit
+    button.btn.btn-primary(type='submit' onclick="") Submit
   if errors 
     ul
       for error in errors

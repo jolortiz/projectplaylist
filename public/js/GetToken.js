@@ -4,6 +4,7 @@
 */
 
 var global_token;
+var global_username;
 
 (function() {
 
@@ -60,6 +61,7 @@ var global_token;
                   /*
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 */
+                  global_username = response.id;
                   $('#login').hide();
                   $('#loggedin').show();
                 }
