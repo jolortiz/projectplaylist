@@ -28,11 +28,17 @@ block content
           img(src = JSON.parse(track).album.images[2].url)
           text 
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
+            input(id="deleteButton" type="button" value="Delete" onclick="deleteTrack(" + track + ");")
+            input(id="reorderUpButton" type="button" value="Up" onclick="reorderTrackUp(" + track + ");")
+            input(id="reorderDownButton" type="button" value="Down" onclick="reorderTrackDown(" + track + ");")
       else
         li(style="background-color:#FFD6D1" onclick="changeTrack(" + track + ")")
           img(src = JSON.parse(track).album.images[2].url)
           text 
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
+            input(id="deleteButton" type="button" value="Delete" onclick="deleteTrack(" + track + ");")
+            input(id="reorderUpButton" type="button" value="Up" onclick="reorderTrackUp(" + track + ");")
+            input(id="reorderDownButton" type="button" value="Down" onclick="reorderTrackDown(" + track + ");")
 
 
   iframe#widget(width='300', height='380', frameborder='0', allowtransparency='true')
