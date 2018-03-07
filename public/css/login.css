@@ -65,6 +65,14 @@ p {
 	text-align: center;
 }
 
+#img_small {
+	position: absolute;
+  top: 5px;
+  right: -100px;
+	width:200px;
+	height:200px;
+}
+
 #login_butt {
 	text-align: center;
 	width: 80%;
@@ -72,7 +80,7 @@ p {
 	margin-top: 50px;
 }
 
-#login_butt a { 
+#login_butt a {
 	margin-top: 30px;
     color: #fff;
     background-color: #CD5C5C;
