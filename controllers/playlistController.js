@@ -41,7 +41,7 @@ var generateRandomString = function (length) {
     return text;
 };
 
-function getTrack(track_id){
+function getTrack(track_id) {
 
 }
 
@@ -223,35 +223,64 @@ exports.playlist_detail_post = [
     // Sanitize (trim and escape) the name field.
     sanitizeBody('track_id').trim().escape(),
     (req, res, next) => {
-        Playlist.findOne({ '_id': req.body._id })
-            .exec(function (err, found_playlist) {
-                if (err) { return next(err); }
-                var found = (found_playlist.tracks.indexOf(req.body.track) > -1);
-                if (found_playlist) {
-                    //Add track to array
-                    if (!found) {
-                        found_playlist.tracks.push(req.body.track);
-                        found_playlist.numberOfTracks++;
-                        found_playlist.save();
-                        res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+        //Add selected track to playlist
+        if (req.body.functionality == "add") {
 
-                    } else {
-                        /* this for deleting a track?
-                        found_playlist.tracks.pop(req.body.track);
-                        found_playlist.numberOfTracks--;
-                        found_playlist.save();
-                        res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
-                        */
+            Playlist.findOne({ '_id': req.body._id })
+                .exec(function (err, found_playlist) {
+                    if (err) { return next(err); }
+                    var found = (found_playlist.tracks.indexOf(req.body.track) > -1);
+                    if (found_playlist) {
+                        //Add track to array
+                        if (!found) {
+                            found_playlist.tracks.push(req.body.track);
+                            found_playlist.numberOfTracks++;
+                            found_playlist.save();
+                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+
+                        }
                     }
-                }
-                else {
-                    //Playlist does not exist, something is seriously wrong
-                    var not_found = { param: "_id", msg: "Playlist not found", value: req.body._id };
-                    errors.array().push(not_found);
-                    res.render('join', { title: 'Join Playlist', errors: errors.array() });
-                }
+                    else {
+                        //Playlist does not exist, something is seriously wrong
+                        var not_found = { param: "_id", msg: "Playlist not found", value: req.body._id };
+                        errors.array().push(not_found);
+                        res.render('join', { title: 'Join Playlist', errors: errors.array() });
+                    }
 
-            });
+                });
+
+        } else if (req.body.functionality == "delete") {
+            Playlist.findOne({ '_id': req.body._id })
+                .exec(function (err, found_playlist) {
+                    if (err) { return next(err); }
+                    var found_index = found_playlist.tracks.indexOf(req.body.track);
+                    var found = (found_index > -1);
+                    if (found_playlist) {
+                        //Delete track from array
+                        if (found) {
+                            console.log("Found the track index: " + found_index);
+                            found_playlist.tracks.splice(found_index, 1);
+                            found_playlist.numberOfTracks--;
+                            found_playlist.save();
+                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+                        }
+                    }
+                    else {
+                        //Playlist does not exist, something is seriously wrong
+                        var not_found = { param: "_id", msg: "Playlist not found", value: req.body._id };
+                        errors.array().push(not_found);
+                        res.render('join', { title: 'Join Playlist', errors: errors.array() });
+                    }
+
+                });
+        } else if (req.body.functionality == "up") {
+            console.log("Up track: " + JSON.parse(req.body.track).name);
+        } else if (req.body.functionality == "down") {
+            console.log("Down track: " + JSON.parse(req.body.track).name);
+        } else {
+            console.log("There is a problem with the functionality key in the ajax call in SearchTrack");
+        }
+
     }
 ];
 

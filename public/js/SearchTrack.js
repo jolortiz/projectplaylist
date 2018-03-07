@@ -27,9 +27,9 @@ $(".search_bar_select").select2({
         },
         processResults: function (data) {
             var items = [];
-            data.tracks.items.forEach(function(d) {
+            data.tracks.items.forEach(function (d) {
                 //if (selectedTrack.indexOf(d.id) == -1) {
-                    items.push(d);
+                items.push(d);
                 //}
             });
 
@@ -52,9 +52,9 @@ function formatTrack(track) {
     }
 
     var html = "<div class='select2-result-repository clearfix'>" +
-    "<div class='select2-result-repository__avatar'><img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' /></div>" +
-    "<div class='select2-result-repository__meta'>" +
-      "<div class='select2-result-repository__title'>" + track.name + " -<br/>" + track.album.artists[0].name + "</div></div></div>";
+        "<div class='select2-result-repository__avatar'><img src='" + ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' /></div>" +
+        "<div class='select2-result-repository__meta'>" +
+        "<div class='select2-result-repository__title'>" + track.name + " -<br/>" + track.album.artists[0].name + "</div></div></div>";
 
     return html;
 }
@@ -64,9 +64,9 @@ function formatTrackForList(track) {
         return "<div>Searching for tracks..</div>";
     }
 
-    var html = "<div class='select2-result-repository clearfix'>"+
-    "<img src='" +  ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' />" +
-    " " + track.name + " - "+ track.album.artists[0].name + "</div><br>";
+    var html = "<div class='select2-result-repository clearfix'>" +
+        "<img src='" + ((track.album.images.length > 2) ? track.album.images[2].url : '../assets/unknown.png') + "' />" +
+        " " + track.name + " - " + track.album.artists[0].name + "</div><br>";
 
     return html;
 }
@@ -81,7 +81,7 @@ function formatTrackSelection(track) {
         $.ajax({
             type: "POST",
             url: "/playlist/" + id,
-            data: { track_id: track.id, _id: id, track: JSON.stringify(track)},
+            data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "add" },
             success: function () {
                 //alert('success');
             }
@@ -95,11 +95,65 @@ function formatTrackSelection(track) {
 
 }
 
+function deleteTrack(track) {
+    //Prevent track click from activating widget
+    event.cancelBubble = true;
+    if (event.stopPropagation) event.stopPropagation();
+
+    $.ajax({
+        type: "POST",
+        url: "/playlist/" + id,
+        data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "delete" },
+        success: function () {
+            //alert('success');
+        }
+    });
+
+    location.reload();
+
+}
+
+function reorderTrackUp(track) {
+    //Prevent track click from activating widget
+    event.cancelBubble = true;
+    if (event.stopPropagation) event.stopPropagation();
+
+    $.ajax({
+        type: "POST",
+        url: "/playlist/" + id,
+        data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "up" },
+        success: function () {
+            //alert('success');
+        }
+    });
+
+    location.reload();
+
+}
+
+function reorderTrackDown(track) {
+    //Prevent track click from activating widget
+    event.cancelBubble = true;
+    if (event.stopPropagation) event.stopPropagation();
+
+    $.ajax({
+        type: "POST",
+        url: "/playlist/" + id,
+        data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "down" },
+        success: function () {
+            //alert('success');
+        }
+    });
+
+    location.reload();
+
+}
+
 function changeTrack(track) {
-        
-		var base = "https://open.spotify.com/embed?uri=spotify:track:" + track.id + "&theme=white&view=coverart";
-        console.log(base);
-	    document.getElementById("widget").src=base;
+
+    var base = "https://open.spotify.com/embed?uri=spotify:track:" + track.id + "&theme=white&view=coverart";
+    console.log(base);
+    document.getElementById("widget").src = base;
 
     /*searches playlist for track
     if(myplaylist.indexOf(track.id) == -1){
