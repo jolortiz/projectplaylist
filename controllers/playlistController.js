@@ -51,7 +51,7 @@ exports.login_create = function (req, res) {
     res.cookie(stateKey, state);
 
     // your application requests authorization
-    var scope = 'user-read-private user-read-email playlist-modify-private';
+    var scope = 'user-read-private user-read-email playlist-modify-private playlist-modify-public';
     creating = true;
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({

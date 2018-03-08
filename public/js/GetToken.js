@@ -62,6 +62,7 @@ var global_username;
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 */
                   global_username = response.id;
+                  console.log(global_username);
                   $('#login').hide();
                   $('#loggedin').show();
                 }

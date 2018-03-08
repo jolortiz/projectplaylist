@@ -87,6 +87,12 @@ function formatTrackSelection(track) {
             }
         });
 
+        console.log(global_username);
+        console.log(global_playlistid);
+        console.log(track.id);
+        //wrong place to put this
+        //addTrack(global_username, global_playlistid, track.id);
+
         location.reload();
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
@@ -166,4 +172,29 @@ function changeTrack(track) {
         document.getElementById("scroll-container").appendChild(li);
         $( "li" ).addClass( "track" );
     }   */
+}
+
+function addTrack(username, playlistid, trackid){
+    //console.log(playlistid);
+    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists/' + playlistid + '/tracks';
+    var temp = "spotify:track:" + trackid;
+
+    $.ajax({
+        type: 'POST',
+        url: urlString,
+        data: JSON.stringify({
+            'uris': [temp]
+        }),
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + global_token
+        },
+        contentType: 'application/json',
+        success: function(result) {
+            console.log('Success');
+        },
+        error: function() {
+            console.log('Error');
+        }
+    })
 }

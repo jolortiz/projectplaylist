@@ -2,7 +2,7 @@ var global_playlistid;
 
 function makePlaylist() {
 	//var isPublic = document.getElementById("public").value;
-	var playlistName = document.getElementById("title.form-control").value;
+	var playlistName = document.querySelector('#title.form-control').value;
 	createPlaylist(global_username, playlistName, true);
 }
 
