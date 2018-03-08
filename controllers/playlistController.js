@@ -249,16 +249,17 @@ exports.playlist_detail_post = [
 
                 });
 
-        } else if (req.body.functionality == "delete") {
+        }
+        // Delete selected track from playlist
+        else if (req.body.functionality == "delete") {
             Playlist.findOne({ '_id': req.body._id })
                 .exec(function (err, found_playlist) {
                     if (err) { return next(err); }
                     var found_index = found_playlist.tracks.indexOf(req.body.track);
                     var found = (found_index > -1);
                     if (found_playlist) {
-                        //Delete track from array
+                        //Delete track from array, cuz it's a loser that nobody loves
                         if (found) {
-                            console.log("Found the track index: " + found_index);
                             found_playlist.tracks.splice(found_index, 1);
                             found_playlist.numberOfTracks--;
                             found_playlist.save();
@@ -273,10 +274,64 @@ exports.playlist_detail_post = [
                     }
 
                 });
-        } else if (req.body.functionality == "up") {
-            console.log("Up track: " + JSON.parse(req.body.track).name);
-        } else if (req.body.functionality == "down") {
-            console.log("Down track: " + JSON.parse(req.body.track).name);
+        }
+        //Swap selected track with track directly above
+        else if (req.body.functionality == "up") {
+            Playlist.findOne({ '_id': req.body._id })
+                .exec(function (err, found_playlist) {
+                    if (err) { return next(err); }
+                    var found_index = found_playlist.tracks.indexOf(req.body.track);
+                    var found = (found_index > -1);
+                    if (found_playlist) {
+                        //Swap track with the one above it
+                        if (found) {
+                            var destination_index = found_index - 1;
+                            var arr = found_playlist.tracks;
+                            if (destination_index < 0) { destination_index = 0; }
+                            arr[destination_index] = arr.splice(found_index, 1, arr[destination_index])[0];
+                            found_playlist.tracks = arr;
+                            found_playlist.save();
+
+                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+                        }
+                    }
+                    else {
+                        //Playlist does not exist, something is seriously wrong
+                        var not_found = { param: "_id", msg: "Playlist not found", value: req.body._id };
+                        errors.array().push(not_found);
+                        res.render('join', { title: 'Join Playlist', errors: errors.array() });
+                    }
+
+                });
+        }
+        //Swap selected track with track directly below
+        else if (req.body.functionality == "down") {
+            Playlist.findOne({ '_id': req.body._id })
+                .exec(function (err, found_playlist) {
+                    if (err) { return next(err); }
+                    var found_index = found_playlist.tracks.indexOf(req.body.track);
+                    var found = (found_index > -1);
+                    if (found_playlist) {
+                        //Swap track with the one below it
+                        if (found) {
+                            var destination_index = found_index + 1;
+                            var arr = found_playlist.tracks;
+                            if (destination_index > arr.length - 1) { destination_index = arr.length-1; }
+                            arr[destination_index] = arr.splice(found_index, 1, arr[destination_index])[0];
+                            found_playlist.tracks = arr;
+                            found_playlist.save();
+
+                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
+                        }
+                    }
+                    else {
+                        //Playlist does not exist, something is seriously wrong
+                        var not_found = { param: "_id", msg: "Playlist not found", value: req.body._id };
+                        errors.array().push(not_found);
+                        res.render('join', { title: 'Join Playlist', errors: errors.array() });
+                    }
+
+                });
         } else {
             console.log("There is a problem with the functionality key in the ajax call in SearchTrack");
         }
