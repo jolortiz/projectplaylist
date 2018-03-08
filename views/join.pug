@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  h1=title
+  h1.colortwo=title
 
-  form(method='POST' action='')
+  form.createstuff(method='POST' action='')
     div.form-group
-      label(for='title') Playlist Join Code:
+      label(for='title')
       input#title.form-control(type='text', placeholder='Join Code' name='_id' required='true' value=(undefined===playlist ? '' : playlist._id) )
-    button.btn.btn-primary(type='submit') Submit
+    button.createbutton(type='submit') Submit
   if errors 
     ul
       for error in errors

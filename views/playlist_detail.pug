@@ -7,7 +7,7 @@ block content
   h1.color #{title} · #{playlist.title}
   h3.color Join Code · #{_id}
 
-  p.color #[strong Number of Tracks ·] #{playlist.numberOfTracks}
+  //p.color #[strong Number of Tracks ·] #{playlist.numberOfTracks}
 
   div(class="search_bar")
     select(class="search_bar_select" style="width: 99%")
@@ -29,18 +29,19 @@ block content
           img(src = JSON.parse(track).album.images[2].url)
           text 
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
-            input(id="deleteButton" type="button" value="Delete" onclick="deleteTrack(" + track + ");")
-            input(id="reorderUpButton" type="button" value="Up" onclick="reorderTrackUp(" + track + ");")
-            input(id="reorderDownButton" type="button" value="Down" onclick="reorderTrackDown(" + track + ");")
+          input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
+          input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
+          input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
+            
       else
         li(style="background-color:#FFD6D1" onclick="changeTrack(" + track + ")")
           img(src = JSON.parse(track).album.images[2].url)
           text 
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
-            input(id="deleteButton" type="button" value="Delete" onclick="deleteTrack(" + track + ");")
-            input(id="reorderUpButton" type="button" value="Up" onclick="reorderTrackUp(" + track + ");")
-            input(id="reorderDownButton" type="button" value="Down" onclick="reorderTrackDown(" + track + ");")
+          input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
+          input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
+          input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
 
 
-  iframe#widget(width='300', height='380', frameborder='0', allowtransparency='true')
+  iframe#widget(frameborder='0', allowtransparency='true')
 

@@ -1,16 +1,16 @@
 extends layout
 
 block content
-  h1=title
+  h1.colortwo=title
 
   script(type="text/javascript" src="/js/CreatePlaylist.js")
   script(type="text/javascript" src="/js/GetToken.js")
 
-  form(method='POST' action='')
+  form.createstuff(method='POST' action='')
     div.form-group
-      label(for='title') Playlist Title:
+      label(for='title')
       input#title.form-control(type='text', placeholder='Playlist Title' name='title' required='true' value=(undefined===playlist ? '' : playlist.title) )
-    button.btn.btn-primary(type='submit' onclick="makePlaylist()") Submit
+    button.createbutton(type='submit') Submit
   if errors 
     ul
       for error in errors
