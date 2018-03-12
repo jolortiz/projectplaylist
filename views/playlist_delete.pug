@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 #{title}: #{playlist}
+  
+    p You've deleted this playlist!
+
+    #login_butt
+    a(href='/login_create')
+      img(style='vertical-align:middle', src='/assets/spotty.png')
+      |   Create a New Playlist
+    #login_butt
+    a(href='/login_join')
+      img(style='vertical-align:middle', src='/assets/spotty.png')
+      |   Join a Playlist
+    
+    form(method='POST' action='')
+      div.form-group
+        input#playlistid.form-control(type='hidden',name='playlistid', required='true', value=playlist )
+
+      button.btn.btn-primary(type='submit') Delete

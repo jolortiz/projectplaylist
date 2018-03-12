@@ -4,8 +4,11 @@
     ~ uses Select2 to search the spotify library and return results
 
 */
+
 var _id = id;
 console.log(global_token);
+
+
 
 $(".search_bar_select").select2({
     placeholder: "Please click to search for a track.",
@@ -174,7 +177,7 @@ function changeTrack(track) {
     }   */
 }
 
-function addTrack(username, playlistid, trackid){
+function addTrack(username, playlistid, trackid) {
     //console.log(playlistid);
     var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists/' + playlistid + '/tracks';
     var temp = "spotify:track:" + trackid;
@@ -190,11 +193,23 @@ function addTrack(username, playlistid, trackid){
             'Authorization': 'Bearer ' + global_token
         },
         contentType: 'application/json',
-        success: function(result) {
+        success: function (result) {
             console.log('Success');
         },
-        error: function() {
+        error: function () {
             console.log('Error');
         }
     })
 }
+
+//Fancy delete button jquery
+$(document).on('click', '.delete', function () {
+    $(this).parent('a').addClass('open');
+});
+$(document).on('mouseleave', '.confirm', function () {
+    $(this).parent('a').removeClass('open');
+});
+$(document).on('click', '.confirm', function () {
+    window.location.replace("/playlist/" + id + "/delete");
+});
+

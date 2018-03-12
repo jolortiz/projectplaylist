@@ -27,7 +27,7 @@ exports.index = function (req, res) {
             Playlist.count(callback);
         }
     }, function (err, results) {
-        res.render('index', { title: 'Musaic', error: err, data: results });
+        res.render('index', { title: 'Musaic', error: err, data: results, from_delete: false });
     });
 };
 
@@ -232,7 +232,6 @@ exports.playlist_detail_post = [
                     var found = (found_playlist.trackIDs.indexOf(JSON.parse(req.body.track).id) > -1);
                     if (found_playlist) {
                         //Add track to array
-                        console.log(found);
                         if (!found) {
                             found_playlist.tracks.push(req.body.track);
                             found_playlist.numberOfTracks++;
@@ -446,13 +445,29 @@ exports.playlist_create_post = [
 ];
 
 // Display Playlist delete form on GET.
-exports.playlist_delete_get = function (req, res) {
-    res.send('NOT IMPLEMENTED: Playlist delete GET');
+exports.playlist_delete_get = function (req, res, next) {
+    async.parallel({
+        playlist: function (callback) {
+            Playlist.findById(req.params.id).exec(callback)
+        },
+    }, function (err, results) {
+        if (err) { return next(err); }
+        if (results == null) { // No results.
+            res.redirect('/index');
+            console.log("No playlist to delete?");
+        }
+        // Successful, so delete
+        Playlist.findByIdAndRemove(req.params.id, function deletePlaylist(err) {
+            if (err) { return next(err); }
+            res.render('index', { title: 'Musaic', error: err, data: results, from_delete: true });
+            //res.redirect('/index')
+        });
+    });
 };
 
 // Handle Playlist delete on POST.
-exports.playlist_delete_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: Playlist delete POST');
+exports.playlist_delete_post = function (req, res, next) {
+    
 };
 
 // Display Playlist update form on GET.
