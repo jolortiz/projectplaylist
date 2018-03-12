@@ -5,6 +5,12 @@ block content
   script(type="text/javascript" src="/js/CreatePlaylist.js")
 
   h1.color #{title} · #{playlist.title}
+  div(class="wrapper")
+    div(class="button-cover button-slide-up")
+      button(class="btn btn--primary button-slide-up__button") Delete
+      div(class="button-set")
+        button(class="btn btn--gray") Cancel
+        button(class="btn btn--gray-drk") Confirm
   h3.color Join Code · #{_id}
 
   //p.color #[strong Number of Tracks ·] #{playlist.numberOfTracks}

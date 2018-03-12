@@ -225,19 +225,20 @@ exports.playlist_detail_post = [
     (req, res, next) => {
         //Add selected track to playlist
         if (req.body.functionality == "add") {
-
-            Playlist.findOne({ '_id': req.body._id })
+            Playlist.findOneAndUpdate({ '_id': req.body._id }, { $addToSet: { 'trackIDs': JSON.parse(req.body.track).id } })
                 .exec(function (err, found_playlist) {
                     if (err) { return next(err); }
-                    var found = (found_playlist.tracks.indexOf(req.body.track) > -1);
+
+                    var found = (found_playlist.trackIDs.indexOf(JSON.parse(req.body.track).id) > -1);
                     if (found_playlist) {
                         //Add track to array
+                        console.log(found);
                         if (!found) {
                             found_playlist.tracks.push(req.body.track);
                             found_playlist.numberOfTracks++;
                             found_playlist.save();
-                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
 
+                            res.render('playlist_detail', { title: 'Title', playlist: found_playlist, _id: req.body._id });
                         }
                     }
                     else {
@@ -316,7 +317,7 @@ exports.playlist_detail_post = [
                         if (found) {
                             var destination_index = found_index + 1;
                             var arr = found_playlist.tracks;
-                            if (destination_index > arr.length - 1) { destination_index = arr.length-1; }
+                            if (destination_index > arr.length - 1) { destination_index = arr.length - 1; }
                             arr[destination_index] = arr.splice(found_index, 1, arr[destination_index])[0];
                             found_playlist.tracks = arr;
                             found_playlist.save();

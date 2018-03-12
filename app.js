@@ -171,6 +171,7 @@ module.exports = app;
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/playlistDB')
+//mongoose.set('debug', true);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

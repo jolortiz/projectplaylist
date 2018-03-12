@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var PlaylistSchema = mongoose.Schema({
     title: {type: String, require: true},
     _id: {type: String, require: true},
-    numberOfTracks: Number,
+    trackIDs: [String],
     tracks: [String]
   });
 
