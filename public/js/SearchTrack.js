@@ -90,6 +90,8 @@ function formatTrackSelection(track) {
             }
         });
 
+        socket.emit('refresh', id);
+
         console.log(global_username);
         console.log(global_playlistid);
         console.log(track.id);
@@ -119,6 +121,7 @@ function deleteTrack(track) {
     });
 
     location.reload();
+    socket.emit('refresh', id);
 
 }
 
@@ -137,6 +140,7 @@ function reorderTrackUp(track) {
     });
 
     location.reload();
+    socket.emit('refresh', id);
 
 }
 
@@ -155,6 +159,7 @@ function reorderTrackDown(track) {
     });
 
     location.reload();
+    socket.emit('refresh', id);
 
 }
 

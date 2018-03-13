@@ -1,7 +1,7 @@
 {
-  "author": "Spotify",
-  "name": "web-api-auth-examples",
-  "description": "Basic examples of the Spotify authorization flows through OAuth 2",
+  "author": "Musaic",
+  "name": "Musaic",
+  "description": "The collaborative playlist",
   "version": "0.0.2",
   "dependencies": {
     "async": "^2.6.0",
@@ -9,9 +9,11 @@
     "express": "^4.16.2",
     "express-validator": "^5.0.0",
     "mongoose": "^5.0.4",
+    "npm": "^5.7.1",
     "pug": "^2.0.0-rc.4",
     "querystring": "~0.2.0",
     "request": "~2.83.0",
+    "socket.io": "^2.0.4",
     "spotify-web-api-node": "^2.5.0"
   }
 }
