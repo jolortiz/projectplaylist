@@ -1,5 +1,5 @@
 
-var socket = io.connect('http://musaicplaylist.heroku.com');
+var socket = io.connect('https://musaicplaylist.heroku.com');
 
 socket.on('connect', function (playlist) {
     console.log("Here too");
