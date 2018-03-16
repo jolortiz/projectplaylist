@@ -1,4 +1,5 @@
 var global_playlistid;
+var nothing;
 
 function makePlaylist(playlist) {
 	//var isPublic = document.getElementById("public").value;
@@ -64,20 +65,51 @@ function checkplaylists(allplaylists, playlistName, playlist) {
 function checkplaylists2(spotifyplist, currplist) {
 	console.log(spotifyplist);
 	console.log(currplist);
+	console.log(spotifyplist.id);
+	var id = spotifyplist.id;
 	console.log("spotty: " + spotifyplist.tracks.total);
 	console.log("mylist: " + currplist.tracks.length);
 	var spottylength = spotifyplist.tracks.total;
 	var mylistlength = currplist.tracks.length;
-	if (spottylength === mylistlength) {
-		// do nothing
-		console.log("do noting");
-	} else if (spottylength > mylistlength) {
-		//create a new playlist
-		console.log("as of now do nothing");
-	} else if (spottylength < mylistlength) {
-		console.log("addtracks");
+	
+	//delete tracks in playlist and update
+
+		var items = [];
+
+		//loops and finds all tracks
+		for (var i = 0; i < spottylength; i++) {
+			var trackuri = spotifyplist.tracks.items[i].track.uri;
+			console.log(trackuri);
+			var item = { "uri": String(trackuri) }
+			items.push(item);
+		}
+		console.log(items);
+		
+		//deletes songs in the playlist
+		var urlString = 'https://api.spotify.com/v1/users/' + global_username + '/playlists/' + id + '/tracks';
+	    $.ajax({
+	        type: 'DELETE',
+	        url: urlString,
+	        data: JSON.stringify({
+	        	"tracks": items
+	        }),
+	        dataType: 'json',
+	        headers: {
+	            'Authorization': 'Bearer ' + global_token
+	        },
+	        contentType: 'application/json',
+	        success: function(result) {
+	            console.log('Success');
+	            nothing = true;
+	        },
+	        error: function() {
+	            console.log('Error');
+	        }
+	    })
+
+	    console.log("addtracks");
 		//updates spotty db and adds tracks to it
-		for (var i = spottylength; i < mylistlength; i++) {
+		for (var i = 0; i < mylistlength; i++) {
 			var track = JSON.parse(currplist.tracks[i]);
 			console.log(track.id);
 			addTrack(global_username, spotifyplist.id, track.id);
@@ -86,7 +118,6 @@ function checkplaylists2(spotifyplist, currplist) {
 			var y = document.getElementById("widget");
     		y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + spotifyplist.id + "&theme=white&view=coverart";
 		};
-	}
 }
 
 function getaPlaylist(playlistName, playlist){
@@ -186,6 +217,6 @@ $(document).on('mouseleave', '.confirm_create', function () {
 $(document).on('click', '.confirm_create', function () {
     //window.location.replace("/playlist/" + id + "/delete");
     //onclick="makePlaylist("+ playlist +")"
-    makePlaylist(playlist);
+    //makePlaylist(playlist);
 });
 
