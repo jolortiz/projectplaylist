@@ -72,7 +72,7 @@ module.exports = app;
 */
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/playlistDB')
+mongoose.connect('mongodb://admin:admin@ds137090.mlab.com:37090/musaicdb')
 //mongoose.set('debug', true);
 
 var db = mongoose.connection;
