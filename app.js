@@ -83,7 +83,7 @@ db.once('open', function() {
 
 console.log('Listening on 8888');
 const io = require('socket.io').listen(server);
-server.listen(8888);
+server.listen(process.env.PORT || 8888);
 
 /*
 * Socket.io stuff
