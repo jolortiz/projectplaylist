@@ -17,7 +17,7 @@ var path = require('path');
 
 var client_id = '3819f8f33b8e48e496a4babf32e60907'; // Your client id
 var client_secret = 'bc19c389323740738b64c637880e680e'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://musaicplaylist.herokuapp.com/callback'; // Your redirect uri
 
 var creating = false;
 
