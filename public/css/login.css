@@ -18,6 +18,22 @@ p {
 	line-height: 1.2em;
 }
 
+.trackname {
+	margin-left: 1%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	width: 55%;
+}
+
+.controlbuttoncontainer {
+	margin-top: auto;
+	margin-bottom: auto;
+	display: inline-block;
+	width: 30%;
+}
+
 #createplay {
 	text-align: center;
 	margin-top: 30px;

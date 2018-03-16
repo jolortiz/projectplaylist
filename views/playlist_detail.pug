@@ -36,21 +36,25 @@ block content
     each track, index in playlist.tracks
       if index % 2 == 0
         li(style="background-color:lightgrey; margin-bottom:4px; margin-top:4px;" onclick="changeTrack(" + track + ")")
-          img(src = JSON.parse(track).album.images[2].url)
-          text 
+          img(style="display: inline-block; width:10%;" src = JSON.parse(track).album.images[2].url)
+          text.trackname 
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
-          input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
-          input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
-          input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
+
+          div.controlbuttoncontainer
+            input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
+            input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
+            input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
             
       else
         li(style="background-color:#FFD6D1" onclick="changeTrack(" + track + ")")
-          img(src = JSON.parse(track).album.images[2].url)
-          text 
+          img(style="display: inline-block; width:10%;" src = JSON.parse(track).album.images[2].url)
+          text.trackname
             = JSON.parse(track).name + " · " + JSON.parse(track).album.artists[0].name
-          input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
-          input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
-          input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
+
+          div.controlbuttoncontainer
+            input.littlebutt(id="deleteButton" type="button" value="╳" onclick="deleteTrack(" + track + ");")
+            input.littlebutt(id="reorderUpButton" type="button" value="△" onclick="reorderTrackUp(" + track + ");")
+            input.littlebutt(id="reorderDownButton" type="button" value="▽" onclick="reorderTrackDown(" + track + ");")
 
 
   iframe#widget(frameborder='0', allowtransparency='true')
