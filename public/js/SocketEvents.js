@@ -6,6 +6,6 @@ socket.on('connect', function (playlist) {
 });
 
 socket.on('refresh tracks', function(data) {
-    console.log("Heerio");
+    //console.log("Heerio");
     location.reload();
 });

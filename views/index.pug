@@ -7,10 +7,11 @@ block content
     var from_delete = "#{from_delete}";
   script(type="text/javascript" src="/js/DeleteToast.js")
 
-  div(id="toast")
-    div(id="img")
-      img(src='/assets/spotty.png')
-    div(id="desc") Playlist deleted
+  if from_delete
+    div(id="toast")
+      div(id="img")
+        img(src='/assets/spotty.png')
+      div(id="desc") Playlist deleted
 
   #img
     image.logo(src='/assets/updated_logo.png')
