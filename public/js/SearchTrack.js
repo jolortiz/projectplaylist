@@ -88,10 +88,11 @@ function formatTrackSelection(track) {
             success: function () {
                 //alert('success');
                 setTimeout(reloadpage(), 3000);
+                socket.emit('refresh', id);
+
             }
         });
 
-        socket.emit('refresh', id);
 
         console.log(global_username);
         console.log(global_playlistid);
@@ -123,6 +124,8 @@ function deleteTrack(track) {
         data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "delete" },
         success: function () {
             //alert('success');
+            setTimeout(reloadpage(), 3000);
+            socket.emit('refresh', id);
         }
     });
 
@@ -142,6 +145,8 @@ function reorderTrackUp(track) {
         data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "up" },
         success: function () {
             //alert('success');
+            setTimeout(reloadpage(), 3000);
+            socket.emit('refresh', id);
         }
     });
 
@@ -161,6 +166,8 @@ function reorderTrackDown(track) {
         data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "down" },
         success: function () {
             //alert('success');
+            setTimeout(reloadpage(), 3000);
+            socket.emit('refresh', id);
         }
     });
 
