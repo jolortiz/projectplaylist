@@ -87,6 +87,7 @@ function formatTrackSelection(track) {
             data: { track_id: track.id, _id: id, track: JSON.stringify(track), functionality: "add" },
             success: function () {
                 //alert('success');
+                setTimeout(reloadpage(), 3000);
             }
         });
 
@@ -98,12 +99,17 @@ function formatTrackSelection(track) {
         //wrong place to put this
         //addTrack(global_username, global_playlistid, track.id);
 
-        location.reload();
+        
+        
         return "Last selected: " + track.name + " - " + (track.album.artists[0].name);
     }
 
     //Set global track identifier to equal the last searched track
 
+}
+
+function reloadpage() {
+    location.reload();
 }
 
 function deleteTrack(track) {
