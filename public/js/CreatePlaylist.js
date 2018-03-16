@@ -15,6 +15,28 @@ function makePlaylist(playlist) {
 	
 }
 
+function getallplaylists(username){
+    //console.log(playlistid);
+    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists';
+
+    $.ajax({
+        type: 'GET',
+        url: urlString,
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + global_token
+        },
+        contentType: 'application/json',
+        success: function(result) {
+            console.log('Success');
+            checkplaylists(result);
+        },
+        error: function() {
+            console.log('Error');
+        }
+    })
+}
+
 function checkplaylists(allplaylists) {
 	//console.log(allplaylists);
 	for (var i = 0; i < allplaylists.items.length; i++) {
@@ -30,6 +52,9 @@ function addtoPlaylist(playlist) {
 		console.log(track.id);
 		addTrack(global_username, global_playlistid, track.id);
 	};
+	//this updates the widget to play the playlist
+	var y = document.getElementById("widget");
+    y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + global_playlistid + "&theme=white&view=coverart";
 }
 
 function createPlaylist(username, playlistName, isPublic, playlist){
@@ -86,24 +111,3 @@ function addTrack(username, playlistid, trackid){
     })
 }
 
-function getallplaylists(username){
-    //console.log(playlistid);
-    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists';
-
-    $.ajax({
-        type: 'GET',
-        url: urlString,
-        dataType: 'json',
-        headers: {
-            'Authorization': 'Bearer ' + global_token
-        },
-        contentType: 'application/json',
-        success: function(result) {
-            console.log('Success');
-            checkplaylists(result);
-        },
-        error: function() {
-            console.log('Error');
-        }
-    })
-}
