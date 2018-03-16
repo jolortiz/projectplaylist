@@ -1,21 +1,22 @@
 var global_playlistid;
-var global_marker;
 
 function makePlaylist(playlist) {
 	//var isPublic = document.getElementById("public").value;
 	//var playlistName = document.querySelector('#title.form-control').value;
 	//console.log(playlist);
-	//getallplaylists(global_username);
 	
-	global_marker = null;
+	
 	console.log(playlist);
 	console.log(global_username);
 	var playlistName = playlist.title;
-	createPlaylist(global_username, playlistName, true, playlist);
+
+	getallplaylists(global_username, playlistName, playlist);
+
+	//createPlaylist(global_username, playlistName, true, playlist);
 	
 }
 
-function getallplaylists(username){
+function getallplaylists(username, playlistName, playlist){
     //console.log(playlistid);
     var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists';
 
@@ -29,7 +30,7 @@ function getallplaylists(username){
         contentType: 'application/json',
         success: function(result) {
             console.log('Success');
-            checkplaylists(result);
+            checkplaylists(result, playlistName, playlist);
         },
         error: function() {
             console.log('Error');
@@ -37,13 +38,77 @@ function getallplaylists(username){
     })
 }
 
-function checkplaylists(allplaylists) {
-	//console.log(allplaylists);
+function checkplaylists(allplaylists, playlistName, playlist) {
+	console.log(allplaylists);
+	var found = false;
 	for (var i = 0; i < allplaylists.items.length; i++) {
 		//var track = JSON.parse(playlist.tracks[i]);
-		var playlist = allplaylists.items[i].name;
-		console.log(playlist);
+		var playlistName2 = allplaylists.items[i].name;
+		console.log(playlistName2);
+		console.log(allplaylists.items[i].tracks.total);
+		//if it finds a match in the spotify db
+		if (playlistName2 === playlistName) {
+			//console.log(allplaylists.items[i].id);
+			console.log("a match");
+			found = true;
+			getaPlaylist(allplaylists.items[i].id, playlist);
+		}
 	};
+	if(found === false) {
+		console.log("create a playlist");
+		createPlaylist(global_username, playlistName, true, playlist);
+
+	}
+}
+
+function checkplaylists2(spotifyplist, currplist) {
+	console.log(spotifyplist);
+	console.log(currplist);
+	console.log("spotty: " + spotifyplist.tracks.total);
+	console.log("mylist: " + currplist.tracks.length);
+	var spottylength = spotifyplist.tracks.total;
+	var mylistlength = currplist.tracks.length;
+	if (spottylength === mylistlength) {
+		// do nothing
+		console.log("do noting");
+	} else if (spottylength > mylistlength) {
+		//create a new playlist
+		console.log("as of now do nothing");
+	} else if (spottylength < mylistlength) {
+		console.log("addtracks");
+		//updates spotty db and adds tracks to it
+		for (var i = spottylength; i < mylistlength; i++) {
+			var track = JSON.parse(currplist.tracks[i]);
+			console.log(track.id);
+			addTrack(global_username, spotifyplist.id, track.id);
+
+			//update widget
+			var y = document.getElementById("widget");
+    		y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + spotifyplist.id + "&theme=white&view=coverart";
+		};
+	}
+}
+
+function getaPlaylist(playlistName, playlist){
+	var urlString = 'https://api.spotify.com/v1/users/' + global_username + '/playlists/' + playlistName;
+
+	$.ajax({
+		type: 'GET',
+		url: urlString,
+		
+		dataType: 'json',
+		headers: {
+			'Authorization': 'Bearer ' + global_token
+		},
+		contentType: 'application/json',
+		success: function(result) {
+			console.log('Success');
+			checkplaylists2(result, playlist)
+		},
+		error: function() {
+			console.log('Error');
+		}
+	})
 }
 
 function addtoPlaylist(playlist) {
@@ -55,6 +120,31 @@ function addtoPlaylist(playlist) {
 	//this updates the widget to play the playlist
 	var y = document.getElementById("widget");
     y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + global_playlistid + "&theme=white&view=coverart";
+}
+
+function addTrack(username, playlistid, trackid){
+    //console.log(playlistid);
+    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists/' + playlistid + '/tracks';
+    var temp = "spotify:track:" + trackid;
+
+    $.ajax({
+        type: 'POST',
+        url: urlString,
+        data: JSON.stringify({
+            'uris': [temp]
+        }),
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + global_token
+        },
+        contentType: 'application/json',
+        success: function(result) {
+            console.log('Success');
+        },
+        error: function() {
+            console.log('Error');
+        }
+    })
 }
 
 function createPlaylist(username, playlistName, isPublic, playlist){
@@ -84,30 +174,5 @@ function createPlaylist(username, playlistName, isPublic, playlist){
 			console.log('Error');
 		}
 	})
-}
-
-function addTrack(username, playlistid, trackid){
-    //console.log(playlistid);
-    var urlString = 'https://api.spotify.com/v1/users/' + username + '/playlists/' + playlistid + '/tracks';
-    var temp = "spotify:track:" + trackid;
-
-    $.ajax({
-        type: 'POST',
-        url: urlString,
-        data: JSON.stringify({
-            'uris': [temp]
-        }),
-        dataType: 'json',
-        headers: {
-            'Authorization': 'Bearer ' + global_token
-        },
-        contentType: 'application/json',
-        success: function(result) {
-            console.log('Success');
-        },
-        error: function() {
-            console.log('Error');
-        }
-    })
 }
 
