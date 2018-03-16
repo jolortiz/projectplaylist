@@ -17,6 +17,11 @@ block content
   div(class="search_bar")
     select(class="search_bar_select" style="width: 99%")
 
+  script(type="text/javascript").
+    function showToast() {
+      document.getElementById('toast').style.display = "block";
+    }
+
   div(align='left')
     a(href="javascript:void(0)" class="delete_button")
       span(class="delete") Delete
@@ -24,7 +29,12 @@ block content
 
     a(href="javascript:void(0)" class="delete_button")
       span(class="create") Create
-      span(class="confirm_create" onclick="makePlaylist("+ playlist +")") Confirm
+      span(class="confirm_create" onclick="makePlaylist("+ playlist +"); showToast();") Confirm
+
+  div(id="toast" style="display:none;");
+    div(id="img")
+      img(src='/assets/spotty.png')
+    div(id="desc") Playlist Deleted
 
   script(src="https://code.jquery.com/jquery-1.10.1.min.js")
   
