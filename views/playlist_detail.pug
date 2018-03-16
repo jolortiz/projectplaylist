@@ -3,15 +3,13 @@ extends layout
 block content
   link(rel='stylesheet', type='text/css', href='/css/login.css')
   script(type="text/javascript" src="/js/CreatePlaylist.js")
+  script(type="text/javascript" src="/js/GetToken.js")
   script(type="text/javascript").
     var id = "#{_id}";
   script(type="text/javascript" src="/js/SocketEvents.js")
 
   h1.color #{title} · #{playlist.title}
 
-  a(href="javascript:void(0)" class="delete_button")
-    span(class="delete") Delete Playlist
-    span(class="confirm") Confirm
   h3.color Join Code · #{_id}
 
   //p.color #[strong Number of Tracks ·] #{playlist.numberOfTracks}
@@ -19,8 +17,15 @@ block content
   div(class="search_bar")
     select(class="search_bar_select" style="width: 99%")
 
+  div(align='left')
+    a(href="javascript:void(0)" class="delete_button")
+      span(class="delete") Delete
+      span(class="confirm") Confirm
+
+    a(class="delete_button" onclick="makePlaylist("+ playlist +")")
+      span(class="create") Create
+
   script(src="http://code.jquery.com/jquery-1.10.1.min.js")
-  script(type="text/javascript" src="/js/GetToken.js")
   
   //Info for select
   link(href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet")
