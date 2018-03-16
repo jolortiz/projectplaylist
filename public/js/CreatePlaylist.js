@@ -113,11 +113,11 @@ function checkplaylists2(spotifyplist, currplist) {
 			var track = JSON.parse(currplist.tracks[i]);
 			console.log(track.id);
 			addTrack(global_username, spotifyplist.id, track.id);
-
-			//update widget
-			var y = document.getElementById("widget");
-    		y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + spotifyplist.id + "&theme=white&view=coverart";
 		};
+		//update widget
+		var y = document.getElementById("widget");
+		y.src = "https://open.spotify.com/embed?uri=spotify:user:" + global_username + ":playlist:" + spotifyplist.id + "&theme=white&view=coverart";
+		
 }
 
 function getaPlaylist(playlistName, playlist){
