@@ -176,3 +176,16 @@ function createPlaylist(username, playlistName, isPublic, playlist){
 	})
 }
 
+//Create button
+$(document).on('click', '.create', function () {
+    $(this).parent('a').addClass('open');
+});
+$(document).on('mouseleave', '.confirm_create', function () {
+    $(this).parent('a').removeClass('open');
+});
+$(document).on('click', '.confirm_create', function () {
+    //window.location.replace("/playlist/" + id + "/delete");
+    //onclick="makePlaylist("+ playlist +")"
+    makePlaylist(playlist);
+});
+

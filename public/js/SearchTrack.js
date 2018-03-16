@@ -232,3 +232,5 @@ $(document).on('click', '.confirm', function () {
     window.location.replace("/playlist/" + id + "/delete");
 });
 
+
+

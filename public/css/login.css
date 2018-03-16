@@ -199,6 +199,16 @@ a span {
 	transition: left 0.2s ease-out;
 	z-index: 10;
   }
+
+  .create {
+	background-color: #CD5C5C;
+	color: white;
+	left: 0;
+	-webkit-transition: left 0.2s ease-out;
+	-moz-transition: left 0.2s ease-out;
+	transition: left 0.2s ease-out;
+	z-index: 10;
+  }
   
   .confirm {
 	background-color: #B33D41;
@@ -206,12 +216,17 @@ a span {
 	z-index: 0;
   }
 
-  .create {
-  	background-color: #CD5C5C;
+  .confirm_create {
+	background-color: #B33D41;
 	color: white;
+	z-index: 0;
   }
   
   a.open .delete {
+	left: -90%;
+  }
+
+  a.open .create {
 	left: -90%;
   }
 
