@@ -3,14 +3,14 @@
 SCRUM Board:
 https://trello.com/b/IuAKyH8Q/project-playlist
 
-<img src="https://drive.google.com/uc?export=view&id=1sORDD0dVOKtpu6ONGyZPVXh9a2OZVDZk" alt="https://gdurl.com/kRuh" >
+![](Slides/Musaic%20Final%20Presentation.jpg)
 
-<img src="https://gdurl.com/TepA" alt="https://gdurl.com/TepA">
+![](Slides/Musaic%20Final%20Presentation%20(1).jpg)
 
-<img src="https://doc-08-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/m5urkd2o8f6vs5itvmr5uusuci8in4bl/1580853600000/02180816299928022348/02180816299928022348/1sdf_G7RT0ccvcVLiUCw9ec18sdZAb7t6?authuser=0" alt="https://gdurl.com/KZRL">
+![](Slides/Musaic%20Final%20Presentation%20(2).jpg)
 
-<img src="https://doc-0o-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/up0bumog45n8pm2k2d1ep3ngm7krir7t/1580853600000/02180816299928022348/02180816299928022348/1lcJY9TxiAcgNKjKtc_RFuMK7vSIC7T9K?authuser=0" alt="https://gdurl.com/fc8n">
+![](Slides/Musaic%20Final%20Presentation%20(3).jpg)
 
-<img src="https://doc-14-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/aigkskks9kg48ie3hogk2aqeiji0e3n9/1580853600000/02180816299928022348/02180816299928022348/1zYDVfaj7mIy_08EHf5SQJyQCr0osHmEf?authuser=0" alt="https://gdurl.com/xEjX">
+![](Slides/Musaic%20Final%20Presentation%20(4).jpg)
 
-<img src="https://doc-00-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/eft4h2k1i8khk655tifd0c8s5k9p4ogg/1580853600000/02180816299928022348/02180816299928022348/1miSU4s8OmmXI_scutXsLZCZELsukNmGc?authuser=0" alt="https://gdurl.com/eP6A">
+![](Slides/Musaic%20Final%20Presentation%20(5).jpg)
