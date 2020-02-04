@@ -5,7 +5,7 @@ https://trello.com/b/IuAKyH8Q/project-playlist
 
 <img src="https://camo.githubusercontent.com/6c5d851a3d0172b20593f5dbdc86cce23788abe0/68747470733a2f2f676475726c2e636f6d2f6b527568" alt="https://gdurl.com/kRuh" >
 
-<img src="https://doc-0c-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/743vrdgvjv6p3sttsebbvc9p989grjmk/1580853600000/02180816299928022348/02180816299928022348/1bl4QIPG0QcqrqvjY5Oji9kf6F2DmiWM6?authuser=0" alt="https://gdurl.com/TepA">
+<img src="https://gdurl.com/TepA" alt="https://gdurl.com/TepA">
 
 <img src="https://doc-08-08-docs.googleusercontent.com/docs/securesc/5m0evin72q8s3tfru0ci0jg7htpti8j5/m5urkd2o8f6vs5itvmr5uusuci8in4bl/1580853600000/02180816299928022348/02180816299928022348/1sdf_G7RT0ccvcVLiUCw9ec18sdZAb7t6?authuser=0" alt="https://gdurl.com/KZRL">
 
