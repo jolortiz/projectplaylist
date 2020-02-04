@@ -3,7 +3,7 @@
 SCRUM Board:
 https://trello.com/b/IuAKyH8Q/project-playlist
 
-<img src="https://camo.githubusercontent.com/6c5d851a3d0172b20593f5dbdc86cce23788abe0/68747470733a2f2f676475726c2e636f6d2f6b527568" alt="https://gdurl.com/kRuh" >
+<img src="https://drive.google.com/uc?export=view&id=1sORDD0dVOKtpu6ONGyZPVXh9a2OZVDZk" alt="https://gdurl.com/kRuh" >
 
 <img src="https://gdurl.com/TepA" alt="https://gdurl.com/TepA">
 
